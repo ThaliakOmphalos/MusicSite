@@ -1,0 +1,304 @@
+/* ============================================
+   MODERN NYC STUDIO THEME
+   ============================================ */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0d0f14;
+  --surface: rgba(255, 255, 255, 0.04);
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #e8e6e3;
+  --muted: #9a9ca5;
+  --taxi: #f5c542;
+  --onair: #ff4d5e;
+  --vu: #4ade80;
+  --radius: 18px;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.75;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(245, 197, 66, 0.08), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(255, 77, 94, 0.06), transparent 40%),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+/* ---------- HEADER: night sky + skyline ---------- */
+header {
+  position: relative;
+  text-align: center;
+  padding: 4rem 1.5rem 7rem;
+  background: linear-gradient(180deg, #1a1530 0%, #2b1d3a 55%, #3d2236 100%);
+  overflow: hidden;
+}
+
+/* soft skyline silhouette */
+header::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 90px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 80' preserveAspectRatio='none'><path fill='%230d0f14' d='M0 80V55H40V35H70V50H90V25H115V50H140V40H165V15H172V2H175V15H185V45H210V30H240V55H265V20H290V55H320V38H350V60H380V28H395V10H398V28H410V50H440V35H470V55H500V22H530V48H560V30H585V12H590V0H592V12H600V50H630V40H660V58H690V26H720V50H750V35H780V55H810V30H840V50H870V40H900V80Z'/></svg>") no-repeat bottom / 100% 100%;
+  opacity: 0.95;
+}
+
+/* small "On air" pill */
+header::before {
+  content: "● On air";
+  position: absolute;
+  top: 1.2rem; right: 1.2rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--onair);
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(255, 77, 94, 0.12);
+  border: 1px solid rgba(255, 77, 94, 0.35);
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+header h1 {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  color: #fff;
+}
+
+header h1::after {           /* thin taxi-yellow accent line */
+  content: "";
+  display: block;
+  width: 60px; height: 3px;
+  margin: 0.8rem auto 0;
+  border-radius: 3px;
+  background: var(--taxi);
+}
+
+header p {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.8rem;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+/* ---------- NAV: floating glass bar with LED dots ---------- */
+nav {
+  position: sticky;
+  top: 1rem;
+  z-index: 10;
+  width: fit-content;
+  margin: -1.6rem auto 0;
+  padding: 0.4rem;
+  display: flex;
+  gap: 0.3rem;
+  background: rgba(20, 22, 30, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+nav a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.2rem;
+  font-size: 0.92rem;
+  color: var(--muted);
+  text-decoration: none;
+  border-radius: 999px;
+  transition: background 0.25s, color 0.25s;
+}
+
+nav a::before {               /* LED indicator */
+  content: "";
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  transition: all 0.25s;
+}
+
+nav a:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
+nav a:hover::before { background: var(--taxi); }
+
+nav a.active { color: #fff; background: rgba(255, 255, 255, 0.1); }
+nav a.active::before { background: var(--vu); box-shadow: 0 0 8px var(--vu); }
+
+/* ---------- MAIN ---------- */
+main { max-width: 900px; margin: 0 auto; padding: 3rem 1.5rem; }
+
+h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 2.5rem 0 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+h2::before {                  /* subway-line style dot */
+  content: "";
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--taxi);
+  flex-shrink: 0;
+}
+
+p { margin-bottom: 1rem; color: #d4d2cf; }
+
+img { max-width: 100%; height: auto; }
+
+.hero { width: 100%; border-radius: var(--radius); margin-bottom: 1.5rem; }
+
+.two-col { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
+.two-col img { flex: 0 0 260px; border-radius: var(--radius); }
+.two-col div { flex: 1; min-width: 250px; }
+
+/* ---------- BUTTONS ---------- */
+.button {
+  display: inline-block;
+  margin: 0.5rem 0.6rem 0 0;
+  padding: 0.75rem 1.6rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #111;
+  background: var(--taxi);
+  text-decoration: none;
+  border-radius: 999px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(245, 197, 66, 0.3);
+}
+
+/* ---------- TIMELINE: soft tape track ---------- */
+.timeline {
+  list-style: none;
+  padding-left: 1.8rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+}
+.timeline li {
+  position: relative;
+  margin-bottom: 1.2rem;
+  padding: 0.9rem 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -2.35rem; top: 1.3rem;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--onair);
+  box-shadow: 0 0 0 4px var(--bg), 0 0 10px var(--onair);
+}
+.timeline strong { color: var(--taxi); font-weight: 600; margin-right: 0.3rem; }
+
+/* ---------- TABLE: clean track list ---------- */
+table {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+th {
+  padding: 1rem;
+  text-align: left;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+td { padding: 0.9rem 1rem; border-bottom: 1px solid var(--border); }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(255, 255, 255, 0.04); }
+td:first-child { color: var(--vu); font-weight: 600; width: 50px; }
+
+/* ---------- IMAGE FRAMES: sleek studio monitor ---------- */
+figure {
+  position: relative;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+figure::before {              /* small rec dot */
+  content: "";
+  position: absolute;
+  top: 22px; right: 22px;
+  z-index: 2;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--onair);
+  box-shadow: 0 0 8px var(--onair);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+figure:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 50px rgba(0, 0, 0, 0.45);
+}
+
+figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+}
+
+figcaption {
+  margin-top: 0.7rem;
+  padding: 0 0.4rem 0.2rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+figure.small { max-width: 350px; }
+.two-col figure { flex: 0 0 260px; margin: 0; }
+
+/* ---------- FOOTER: soft VU meter glow ---------- */
+footer {
+  position: relative;
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+footer::before {
+  content: "";
+  display: block;
+  width: 180px; height: 4px;
+  margin: 0 auto 1.2rem;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--vu), var(--taxi), var(--onair));
+  opacity: 0.8;
+}
